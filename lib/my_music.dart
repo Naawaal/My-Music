@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_music/app/ui/pages/01_homepage/homepage_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:my_music/consts/color_const.dart';
+import 'package:my_music/views/homepage_screen.dart';
 
 class MyMusic extends StatelessWidget {
   const MyMusic({super.key});
@@ -12,7 +14,12 @@ class MyMusic extends StatelessWidget {
       themeMode: ThemeMode.system,
       home: const HomepageScreen(),
       theme: ThemeData(
-        fontFamily: '',
+        fontFamily: GoogleFonts.poppins().fontFamily,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        scaffoldBackgroundColor: bgDarkColor,
       ),
     );
   }
