@@ -62,33 +62,43 @@ class HomepageScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: ListView.builder(
                 physics: const BouncingScrollPhysics(),
-                itemCount: 15,
+                itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
                   return Container(
                     margin: const EdgeInsets.only(bottom: 5),
                     child: ListTile(
+                      onTap: () {
+                        playerController.playSong(
+                          index: index,
+                          uri: snapshot.data![index].uri,
+                        );
+                      },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                       tileColor: bgColor,
                       title: Text(
-                        "SIRUPATE JUNGAMA",
+                        snapshot.data![index].displayNameWOExt,
                         style: ourStyle(
                           size: 15,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       subtitle: Text(
-                        "Babul Giri",
+                        "${snapshot.data![index].artist}",
                         style: ourStyle(
                           size: 12,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      leading: const Icon(
-                        Icons.music_note_outlined,
-                        color: whiteColor,
-                        size: 30,
+                      leading: QueryArtworkWidget(
+                        id: snapshot.data![index].id,
+                        type: ArtworkType.AUDIO,
+                        nullArtworkWidget: const Icon(
+                          Icons.music_note_outlined,
+                          size: 30,
+                          color: whiteColor,
+                        ),
                       ),
                       trailing: const Icon(
                         Icons.play_arrow_outlined,
